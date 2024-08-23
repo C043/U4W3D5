@@ -22,7 +22,6 @@ public class Utente {
     private LocalDate dataNascita;
 
     @Column(name = "numero_tessera")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long numeroTessera;
 
     public Utente() {
