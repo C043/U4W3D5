@@ -12,11 +12,12 @@ import jakarta.persistence.Query;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 public class PrestitoDAO {
-    private EntityManager em;
+    private final EntityManager em;
 
     public PrestitoDAO(EntityManager em) {
         this.em = em;
@@ -43,6 +44,16 @@ public class PrestitoDAO {
         }
     }
 
+    public void save(UUID utenteId, UUID leggibileId, LocalDate date) {
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        LeggibileDAO ld = new LeggibileDAO(em);
+        UtenteDAO ud = new UtenteDAO(em);
+        em.persist(new Prestito(ud.getUtenteById(utenteId), ld.getLeggibileById(leggibileId), date));
+        transaction.commit();
+        System.out.println("Prestito effettuato con successo.");
+    }
+
     public Prestito getPrestitoById(UUID id) {
         Prestito found = em.find(Prestito.class, id);
         if (found == null) throw new NotFoundException(id);
@@ -57,5 +68,9 @@ public class PrestitoDAO {
         transaction.commit();
 
         System.out.println("Modificati " + numModificati + " elementi.");
+    }
+
+    public List<Prestito> getPrestitiScaduti() {
+        return em.createQuery("SELECT p FROM Prestito p WHERE p.restituzioneEffettuata IS NULL AND :now > p.finePrestito").setParameter("now", LocalDate.now()).getResultList();
     }
 }
