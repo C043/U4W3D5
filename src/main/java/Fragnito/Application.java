@@ -13,8 +13,8 @@ public class Application {
 
         LeggibileDAO ld = new LeggibileDAO(em);
 
-       /* ld.generateNLibri(5);
-        ld.generateNRiviste(5);*/
+        ld.generateNLibri(5);
+        ld.generateNRiviste(5);
 
         em.close();
         emf.close();

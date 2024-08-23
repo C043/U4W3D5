@@ -6,6 +6,7 @@ import java.util.UUID;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Table(name = "libri_e_riviste")
 @DiscriminatorColumn(name = "tipologia")
 public abstract class Leggibile {
     @Id
