@@ -38,6 +38,6 @@ public class Libro extends Leggibile {
         return "Libro{" +
                 "autore='" + autore + '\'' +
                 ", genere='" + genere + '\'' +
-                "} " + super.toString();
+                super.toString();
     }
 }

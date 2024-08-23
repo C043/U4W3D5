@@ -61,8 +61,7 @@ public abstract class Leggibile {
 
     @Override
     public String toString() {
-        return "Leggibile{" +
-                "isbn=" + isbn +
+        return "isbn=" + isbn +
                 ", titolo='" + titolo + '\'' +
                 ", anno=" + anno +
                 ", pagine=" + pagine +

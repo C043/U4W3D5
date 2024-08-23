@@ -11,6 +11,9 @@ public class Rivista extends Leggibile {
     @Enumerated(EnumType.STRING)
     private Periodicita periodicita;
 
+    public Rivista() {
+    }
+
     public Rivista(String titolo, Integer anno, Integer pagine, Periodicita periodicita) {
         super(titolo, anno, pagine);
         this.periodicita = periodicita;
@@ -28,6 +31,6 @@ public class Rivista extends Leggibile {
     public String toString() {
         return "Rivista{" +
                 "periodicita=" + periodicita +
-                "} " + super.toString();
+                super.toString();
     }
 }

@@ -8,6 +8,7 @@ import com.github.javafaker.Faker;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
+import java.util.List;
 import java.util.UUID;
 
 import static Fragnito.entities.Periodicita.randomPeriodicita;
@@ -67,5 +68,9 @@ public class LeggibileDAO {
         Leggibile found = em.find(Leggibile.class, isbn);
         if (found == null) throw new NotFoundException(isbn);
         return found;
+    }
+
+    public List<Leggibile> getLeggibileByAnno(int anno) {
+        return em.createQuery("SELECT l FROM Leggibile l WHERE l.anno = :anno", Leggibile.class).setParameter("anno", anno).getResultList();
     }
 }

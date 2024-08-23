@@ -36,6 +36,9 @@ public class Application {
 
         /*ld.generateNLibri(5);
         ld.generateNRiviste(5);*/
+        /*System.out.println(ld.getLeggibileById(UUID.fromString("0278aa10-653f-4fd2-80c5-516891dfde42")));*/
+
+        ld.getLeggibileByAnno(1546).forEach(System.out::println);
 
         em.close();
         emf.close();
