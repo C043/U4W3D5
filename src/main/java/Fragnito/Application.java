@@ -8,9 +8,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-import java.time.LocalDate;
-import java.util.UUID;
-
 public class Application {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("U4W3D5");
 
@@ -50,7 +47,9 @@ public class Application {
         /*pd.consegna(UUID.fromString("f78718a2-8c1f-4d2c-967e-5bbe6b6c48d5"));
         ld.getLeggibiliInPrestitoAUtente(476677L).forEach(System.out::println);*/
 
+/*
         pd.save(UUID.fromString("2877421f-9f6c-4804-a6dc-d2dc8d3d5650"), UUID.fromString("9dd20dd5-b095-4aeb-af07-34db3dd8f93b"), LocalDate.of(2020, 5, 3));
+*/
         pd.getPrestitiScaduti().forEach(System.out::println);
 
         em.close();
