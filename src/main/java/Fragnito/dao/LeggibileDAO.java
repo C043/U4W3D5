@@ -54,9 +54,18 @@ public class LeggibileDAO {
         System.out.println("Elemento leggibile " + leggibile.getTitolo() + " aggiunto con successo.");
     }
 
-    public Leggibile getLeggibileById(UUID id) {
-        Leggibile found = em.find(Leggibile.class, id);
-        if (found == null) throw new NotFoundException(id);
+    public void deleteElement(UUID isbn) {
+        Leggibile found = getLeggibileById(isbn);
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        em.remove(found);
+        transaction.commit();
+        System.out.println("Elemento " + found.getTitolo() + " eliminato con successo.");
+    }
+
+    public Leggibile getLeggibileById(UUID isbn) {
+        Leggibile found = em.find(Leggibile.class, isbn);
+        if (found == null) throw new NotFoundException(isbn);
         return found;
     }
 }

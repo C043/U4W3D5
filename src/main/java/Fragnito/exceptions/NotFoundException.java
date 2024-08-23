@@ -6,6 +6,6 @@ public class NotFoundException extends RuntimeException {
     private String message;
 
     public NotFoundException(UUID id) {
-        super("Elemento con id " + id + " non trovato");
+        super("Elemento con id " + id + " non trovato.");
     }
 }
