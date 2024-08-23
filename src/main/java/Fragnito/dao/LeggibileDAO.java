@@ -81,4 +81,8 @@ public class LeggibileDAO {
     public List<Leggibile> getLeggibileByTitle(String titolo) {
         return em.createQuery("SELECT l FROM Leggibile l WHERE l.titolo LIKE :titolo", Leggibile.class).setParameter("titolo", "%" + titolo + "%").getResultList();
     }
+
+    public List<Leggibile> getLeggibiliInPrestitoAUtente(Long numeroTessera) {
+        return (List<Leggibile>) em.createQuery("SELECT p.leggibile FROM Prestito p JOIN p.utente WHERE p.utente.numeroTessera = :numero AND p.restituzioneEffettuata IS NULL").setParameter("numero", numeroTessera).getResultList();
+    }
 }

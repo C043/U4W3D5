@@ -3,6 +3,8 @@ package Fragnito.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -23,6 +25,9 @@ public class Utente {
 
     @Column(name = "numero_tessera")
     private Long numeroTessera;
+
+    @OneToMany(mappedBy = "utente")
+    private List<Prestito> prestiti = new ArrayList<>();
 
     public Utente() {
     }

@@ -8,6 +8,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
+import java.util.UUID;
+
 public class Application {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("U4W3D5");
 
@@ -41,6 +43,11 @@ public class Application {
         ld.getLeggibileByAnno(1546).forEach(System.out::println);
         ld.getLeggibileByAutore("Alix Price").forEach(System.out::println);
         ld.getLeggibileByTitle("In Dubious Battle").forEach(System.out::println);
+/*
+        pd.generatePrestito(UUID.fromString("2877421f-9f6c-4804-a6dc-d2dc8d3d5650"), UUID.fromString("39a2efcd-fbdf-4b83-9f0a-cb33bdc8620b"));
+*/
+        pd.consegna(UUID.fromString("f78718a2-8c1f-4d2c-967e-5bbe6b6c48d5"));
+        ld.getLeggibiliInPrestitoAUtente(476677L).forEach(System.out::println);
 
         em.close();
         emf.close();

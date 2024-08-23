@@ -7,6 +7,7 @@ import Fragnito.exceptions.NotFoundException;
 import com.github.javafaker.Faker;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Query;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -40,5 +41,21 @@ public class PrestitoDAO {
         } catch (NotFoundException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public Prestito getPrestitoById(UUID id) {
+        Prestito found = em.find(Prestito.class, id);
+        if (found == null) throw new NotFoundException(id);
+        return found;
+    }
+
+    public void consegna(UUID prestitoId) {
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        Query updateQuery = em.createQuery("UPDATE Prestito p SET p.restituzioneEffettuata = :now WHERE p.id = :id").setParameter("now", LocalDate.now()).setParameter("id", prestitoId);
+        int numModificati = updateQuery.executeUpdate();
+        transaction.commit();
+
+        System.out.println("Modificati " + numModificati + " elementi.");
     }
 }
