@@ -73,4 +73,12 @@ public class LeggibileDAO {
     public List<Leggibile> getLeggibileByAnno(int anno) {
         return em.createQuery("SELECT l FROM Leggibile l WHERE l.anno = :anno", Leggibile.class).setParameter("anno", anno).getResultList();
     }
+
+    public List<Leggibile> getLeggibileByAutore(String autore) {
+        return em.createQuery("SELECT l FROM Leggibile l WHERE l.autore = :autore", Leggibile.class).setParameter("autore", autore).getResultList();
+    }
+
+    public List<Leggibile> getLeggibileByTitle(String titolo) {
+        return em.createQuery("SELECT l FROM Leggibile l WHERE l.titolo LIKE :titolo", Leggibile.class).setParameter("titolo", "%" + titolo + "%").getResultList();
+    }
 }

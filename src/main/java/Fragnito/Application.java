@@ -39,6 +39,8 @@ public class Application {
         /*System.out.println(ld.getLeggibileById(UUID.fromString("0278aa10-653f-4fd2-80c5-516891dfde42")));*/
 
         ld.getLeggibileByAnno(1546).forEach(System.out::println);
+        ld.getLeggibileByAutore("Alix Price").forEach(System.out::println);
+        ld.getLeggibileByTitle("In Dubious Battle").forEach(System.out::println);
 
         em.close();
         emf.close();
