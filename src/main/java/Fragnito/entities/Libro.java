@@ -1,14 +1,11 @@
 package Fragnito.entities;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
 @Entity
 public class Libro extends Leggibile {
-    @Column(nullable = false)
     private String autore;
 
-    @Column(nullable = false)
     private String genere;
 
     public Libro(String titolo, Integer anno, Integer pagine, String autore, String genere) {

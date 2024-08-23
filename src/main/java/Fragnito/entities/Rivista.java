@@ -7,7 +7,7 @@ import jakarta.persistence.Enumerated;
 
 @Entity
 public class Rivista extends Leggibile {
-    @Column(name = "periodicità", nullable = false)
+    @Column(name = "periodicità")
     @Enumerated(EnumType.STRING)
     private Periodicita periodicita;
 
