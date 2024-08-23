@@ -1,6 +1,7 @@
 package Fragnito.dao;
 
 import Fragnito.entities.Utente;
+import Fragnito.exceptions.NotFoundException;
 import com.github.javafaker.Faker;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
@@ -8,6 +9,7 @@ import jakarta.persistence.EntityTransaction;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.UUID;
 
 public class UtenteDAO {
     private final EntityManager em;
@@ -29,5 +31,11 @@ public class UtenteDAO {
             transaction.commit();
             System.out.println("L'utente " + newUtente.getCognome() + " è stato aggiunto con successo.");
         }
+    }
+
+    public Utente getUtenteById(UUID id) {
+        Utente found = em.find(Utente.class, id);
+        if (found == null) throw new NotFoundException(id);
+        return found;
     }
 }

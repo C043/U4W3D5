@@ -1,19 +1,34 @@
 package Fragnito;
 
 import Fragnito.dao.LeggibileDAO;
+import Fragnito.dao.PrestitoDAO;
 import Fragnito.dao.UtenteDAO;
+import Fragnito.entities.Libro;
+import Fragnito.entities.Rivista;
+import com.github.javafaker.Faker;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+
+import static Fragnito.entities.Periodicita.randomPeriodicita;
 
 public class Application {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("U4W3D5");
 
     public static void main(String[] args) {
+        Faker faker = new Faker();
         EntityManager em = emf.createEntityManager();
 
         LeggibileDAO ld = new LeggibileDAO(em);
         UtenteDAO ud = new UtenteDAO(em);
+        PrestitoDAO pd = new PrestitoDAO(em);
+
+/*
+        pd.generatePrestito(UUID.fromString("2877421f-9f6c-4804-a6dc-d2dc8d3d5650"), UUID.fromString("17590749-558f-4ea8-9230-92b7eb7bbc2f"));
+*/
+
+        ld.save(new Libro(faker.book().title(), faker.number().numberBetween(1453, 2024), faker.number().numberBetween(50, 750), faker.book().author(), faker.book().genre()));
+        ld.save(new Rivista(faker.book().title(), faker.number().numberBetween(1453, 2024), faker.number().numberBetween(50, 750), randomPeriodicita()));
 
         /*ud.generateNUtenti(5);*/
 

@@ -8,6 +8,9 @@ public class Libro extends Leggibile {
 
     private String genere;
 
+    public Libro() {
+    }
+
     public Libro(String titolo, Integer anno, Integer pagine, String autore, String genere) {
         super(titolo, anno, pagine);
         this.autore = autore;

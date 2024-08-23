@@ -1,10 +1,14 @@
 package Fragnito.dao;
 
+import Fragnito.entities.Leggibile;
 import Fragnito.entities.Libro;
 import Fragnito.entities.Rivista;
+import Fragnito.exceptions.NotFoundException;
 import com.github.javafaker.Faker;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+
+import java.util.UUID;
 
 import static Fragnito.entities.Periodicita.randomPeriodicita;
 
@@ -39,5 +43,20 @@ public class LeggibileDAO {
             transaction.commit();
             System.out.println("La rivista " + newRivista.getTitolo() + " è stata aggiunta con successo.");
         }
+    }
+
+    public void save(Leggibile leggibile) {
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        em.persist(leggibile);
+        transaction.commit();
+
+        System.out.println("Elemento leggibile " + leggibile.getTitolo() + " aggiunto con successo.");
+    }
+
+    public Leggibile getLeggibileById(UUID id) {
+        Leggibile found = em.find(Leggibile.class, id);
+        if (found == null) throw new NotFoundException(id);
+        return found;
     }
 }
